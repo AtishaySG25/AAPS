@@ -104,6 +104,23 @@ model = lm(data = hData, sqrtprice_per_sqft ~ logrent)
 summary(model)
 ```
 
+```{r}
+# Build a linear model to predict price per sqft as a function of logrent and area
+model = lm(data = hData, sqrtprice_per_sqft ~ area + logrent)
+summary(model)
+```
+
+```{r}
+# Build a linear model to predict price per sqft as a function of logrent and logarea
+hData['logarea'] = log(hData['area'])
+model = lm(data = hData, sqrtprice_per_sqft ~ logarea + logrent)
+summary(model)
+```
+
+```{r}
+# Build a linear model to predict price per sqft as a function of logrent and 
+```
+
 
 ```{r}
 # Build a linear model to predict price per sqft as a function of logrent and facing
