@@ -21,6 +21,12 @@ str(hData)
 ```
 
 ```{r}
+dfData = data.frame(hData)
+correl_mat = cor(dfData)
+```
+
+
+```{r}
 # Convert 'locality', 'facing' and 'parking' columns to factors
 categorical_cols = c("locality", "facing", "parking")
 hData[categorical_cols] = lapply(hData[categorical_cols], as.factor)
@@ -115,16 +121,6 @@ summary(model)
 hData['logarea'] = log(hData['area'])
 model = lm(data = hData, sqrtprice_per_sqft ~ logarea + logrent)
 summary(model)
-```
-
-```{r}
-# Build a linear model to predict price per sqft as a function of logrent and 
-```
-
-
-```{r}
-# Build a linear model to predict price per sqft as a function of logrent and facing
-model = ?
 ```
 
 
