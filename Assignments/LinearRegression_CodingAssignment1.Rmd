@@ -216,19 +216,25 @@ summary(model)
 # Rebuild a linear model to predict sqrt of price per sqft as a function of logarea, logrent, and locality which we will evaluate using a train-test split of the dataset
 model = lm(data = hData, sqrtprice_per_sqft ~ ? + ? + ?)
 summary(model)
+
+#Calculate the accuracy of the linear regression model
+predictions = predict(model)
+accuracy = cor(hData$sqrtprice_per_sqft, predictions)
+accuracy
 ```
+
 
 ```{r}
 # Split data into train (80%) and test (20%) sets and evaluate model performance on train and test sets. Run this cell multiple times for a random splitting of the data into train and test sets and report the model performance on the resulting train and test sets. Is there much variability in the model performance across different test sets? If that is the case, then the model is not generalizing well and is overfitting the train set. Is it the case here?
-ind = sample(nrow(?), size = floor(?*nrow(hData)), replace = FALSE)
-hData_train = hData[?, ]
-hData_test = hData[-?, ]
+ind = sample(nrow(hData), size = floor(0.8*nrow(hData)), replace = FALSE)
+hData_train = hData[ind, ]
+hData_test = hData[-ind, ]
 
 # Calculate RMSE (root-mean-squared-error) on train data
-train_error = sqrt(mean((hData_train$? - predict(model, ?))^2))
+train_error = sqrt(mean((hData_train$price_per_sqft - predict(model, data = hData_test))^2))
 
 # Calculate RMSE (root-mean-squared-error) on test data
-test_error = 
+test_error = sqrt(mean((hData_test$price_per_sqft - predict(model, data = hData_test))^2))
 
 print(train_error)
 print(test_error)
