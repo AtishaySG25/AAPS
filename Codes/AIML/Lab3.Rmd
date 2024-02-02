@@ -35,7 +35,7 @@ str(hData)
 
 ```{r}
 # Continuous columns
-continuous_cols = setdiff(colnames(hData), categorical_cols)
+  continuous_cols = setdiff(colnames(hData), categorical_cols)
 ```
 
 
