@@ -2,7 +2,9 @@
 title: "Linear Regression Coding Assignment-1"
 editor_options:
   chunk_output_type: console
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r}
@@ -214,7 +216,7 @@ summary(model)
 
 ```{r}
 # Rebuild a linear model to predict sqrt of price per sqft as a function of logarea, logrent, and locality which we will evaluate using a train-test split of the dataset
-model = lm(data = hData, sqrtprice_per_sqft ~ ? + ? + ?)
+model = lm(data = hData, sqrtprice_per_sqft ~ logarea + logrent + locality)
 summary(model)
 
 #Calculate the accuracy of the linear regression model
