@@ -1,7 +1,7 @@
 ---
 title: "Linear Regression Coding Assignment-1"
 editor_options:
-  chunk_output_type: console
+  chunk_output_type: inline
 output:
   html_document:
     df_print: paged
@@ -30,6 +30,7 @@ str(hData)
 ```{r}
 # Continuous columns
 continuous_cols = setdiff(colnames(hData), categorical_cols)
+continuous_cols
 ```
 
 ```{r}
@@ -70,7 +71,7 @@ model = lm(data = hData, price_per_sqft ~ rent)
 summary(model)
 
 # Calculate the accuracy of the linear regression model
-predictions <- predict(model)
+  predictions <- predict(model)
 accuracy <- cor(hData$price_per_sqft, predictions)
 accuracy
 
