@@ -192,8 +192,41 @@ p3
 ```
 **Question 13: fit a linear model for approximating *mpg* as a function of *displacement* and *origin*. Print the model's summary.**
 ```{r}
+model1 = lm(data = autompg, mpg ~ disp + origin)
+summary(model1)
+```
+**Question 14: Extract the slope and intercept for estimating the mpg of local and international categories. It would be helpful to start with the regression equation $\hat{y}^{(i)} = \hat{\beta}_0 + \hat{\beta}_1x_1^{(i)} + \hat{\beta}_2x_2^{(i)}$ and then write two separate equations for local
+ and international categories.**
+ 
+```{r}
+# Extract the intercept and slope for the 'international' category
+intercept_international = coef(model)["(Intercept)"]
+slope_international = coef(model)["origininternational"]
+
+# Extract the intercept and slope for the 'local' category
+# For the 'local' category, the intercept is the same as for the 'international' category,
+# and the slope is the sum of the slope for the 'international' category and the coefficient for 'originlocal'
+intercept_local = intercept_international
+slope_local = slope_international + coef(model)["originlocal"]
+```
+
+```{r}
+# Print the intercept and slope for the 'international' category
+print(paste("Intercept for international: ", intercept_international))
+print(paste("Slope for international: ", slope_international))
+
+# Print the intercept and slope for the 'local' category
+print(paste("Intercept for local: ", intercept_local))
+print(paste("Slope for local: ", slope_local))
 
 ```
+**Question 15: to the scatter plot you created for mpg. vs displacement color coded using origin, add two separete regression lines for local and domestic cars.**
+```{r}
+p3 %+% geom_line(intercept = intercept_local, slope = slope_local, color = 'red', size = 1, linetype = 1) + p3
+   
+```
+
+
 
 
 
